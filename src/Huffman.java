@@ -61,8 +61,7 @@ public class Huffman {
 	private void buildCodeTable(){
 		String code = "";
 		node n = root;
-		buildCodeRecursion(n, code);  // HashMap for {word:code} (Recursion)
-		buildCodeReverse();   // HashMap for {code:word}
+		buildCodeRecursion(n, code);  // Recursion
 	}
 	
 	private void buildCodeRecursion(node n, String code){
@@ -72,14 +71,9 @@ public class Huffman {
 				buildCodeRecursion(n.right, code + '1');
 			}
 			else{  // n = Leaf node
-				hmapCode.put(n.ch, code);
+				hmapCode.put(n.ch, code); // for {character:code}
+				hmapCodeR.put(code, n.ch); // for {code:character}
 			}
-		}
-	}
-	
-	private void buildCodeReverse(){
-		for (Map.Entry<Character, String> entry: hmapCode.entrySet()){
-			hmapCodeR.put(entry.getValue(), entry.getKey()); 
 		}
 	}
 	
